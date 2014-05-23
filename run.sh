@@ -1,20 +1,20 @@
 #!/bin/sh
-command="nc -up"
+cmd="nc -up"
 message="[wercker] "
 if [ -n "$WERCKER_UDP_HOST" ] ; then
-	command="$command $WERCKER_UDP_HOST"
+	cmd="$cmd $WERCKER_UDP_HOST"
 else
-	command="$command localhost"
+	cmd="$cmd localhost"
 fi
 
 if [ -n "$WERCKER_UDP_PORT" ] ; then
-	command="$command $WERCKER_UDP_PORT"
+	cmd="$cmd $WERCKER_UDP_PORT"
 else
-	command-"$command 3000"
+	cmd-"$cmd 3000"
 fi
 
 message="[wercker] $WERCKER_APPLICATION_OWNER_NAME/$WERCKER_APPLICATION_NAME:"
 message="$message build $WERCKER_RESULT ($WERCKER_STARTED_BY on $WECKER_GIT_BRANCH"
 
-echo $message > $command
+echo $message > $cmd
 echo "Sent $WERCKER_RESULT message to $WERCKER_UDP_HOST:$WERCKER_UDP_PORT"
